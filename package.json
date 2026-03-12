@@ -1,0 +1,122 @@
+{
+  "name": "terminal-activity-button",
+  "displayName": "Terminal Activity Button",
+  "description": "A lightweight button in the Activity Bar and/or Status Bar to toggle the terminal panel.",
+  "version": "0.1.0",
+  "publisher": "cclose",
+  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cclose/vscode-terminal-activity-button"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "terminal",
+    "toggle",
+    "activity bar",
+    "status bar",
+    "button"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "terminal-activity-button.openTerminal",
+        "title": "Open Terminal",
+        "category": "Terminal Button",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "terminal-activity-button.toggleTerminal",
+        "title": "Toggle Terminal",
+        "category": "Terminal Button",
+        "icon": "$(terminal)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "terminal-activity-button",
+          "title": "Terminal",
+          "icon": "resources/terminal.svg"
+        }
+      ]
+    },
+    "views": {
+      "terminal-activity-button": [
+        {
+          "id": "terminal-activity-button.view",
+          "name": "Terminal",
+          "when": "config.terminal-activity-button.showInActivityBar"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "terminal-activity-button.view",
+        "contents": "Click the terminal icon in the Activity Bar to toggle the terminal panel.\n[Open Terminal](command:terminal-activity-button.openTerminal)"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "terminal-activity-button.openTerminal",
+          "when": "true"
+        },
+        {
+          "command": "terminal-activity-button.toggleTerminal",
+          "when": "true"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Terminal Activity Button",
+      "properties": {
+        "terminal-activity-button.showInActivityBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show terminal button in the Activity Bar."
+        },
+        "terminal-activity-button.showInStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show terminal button in the Status Bar."
+        },
+        "terminal-activity-button.activityBarMode": {
+          "type": "string",
+          "default": "toggle",
+          "enum": [
+            "toggle",
+            "open"
+          ],
+          "enumDescriptions": [
+            "Open, focus, or close the terminal panel (full toggle)",
+            "Open or focus the terminal panel (never closes)"
+          ],
+          "description": "Activity Bar click behavior."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "lint": "eslint src/ --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "package": "vsce package",
+    "prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.27.4",
+    "typescript": "^5.3.0"
+  }
+}
