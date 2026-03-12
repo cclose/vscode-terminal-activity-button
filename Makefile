@@ -1,4 +1,6 @@
-.PHONY: help build watch lint format format-check package clean
+.PHONY: help build watch lint format format-check package install install-windsurf clean
+
+VSIX_FILE := $(shell ls -1 *.vsix 2>/dev/null | head -1)
 
 help: ## Show available targets
 	@echo "terminal-activity-button — Makefile targets"
@@ -22,6 +24,14 @@ format-check: node_modules ## Check code formatting
 
 package: build ## Package as .vsix
 	@npx vsce package
+
+install: package ## Install extension into VS Code
+	@code --install-extension $$(ls -1t *.vsix | head -1)
+	@echo "Reload VS Code to activate."
+
+install-windsurf: package ## Install extension into Windsurf
+	@windsurf --install-extension $$(ls -1t *.vsix | head -1)
+	@echo "Reload Windsurf to activate."
 
 clean: ## Remove build artifacts
 	@rm -rf dist out *.vsix

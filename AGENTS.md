@@ -47,6 +47,27 @@ This is a VS Code extension written in TypeScript. It is intentionally minimal a
 - Tests co-located with source when added.
 - Prefer testing command logic in isolation where possible.
 
+## Commit Messages
+
+Follow [Conventional Commits](https://www.conventionalcommits.org/). No Jira tickets for this project.
+
+```
+type: short imperative description (max 50 chars)
+
+- active verb describing change (adds, removes, fixes, updates, refactors)
+- another change description
+- focus on WHAT changed and WHY, not HOW
+```
+
+**Types:** `feat`, `fix`, `chore`, `refactor`, `docs`, `style`, `test`
+
+**Rules:**
+- Subject line: imperative mood, lowercase, no period
+- Separate subject from body with blank line
+- Bullet points with active present-tense verbs (adds, removes, fixes)
+- Don't mention boilerplate (changelog bumps, version changes, file creation)
+- Don't describe the obvious — be concise and specific
+
 ## PR Checklist
 
 - [ ] `make build` passes
