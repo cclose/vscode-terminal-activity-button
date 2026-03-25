@@ -22,7 +22,12 @@
     "status bar",
     "button"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:terminal-activity-button.openTerminal",
+    "onCommand:terminal-activity-button.toggleTerminal",
+    "onView:terminal-activity-button.view"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [

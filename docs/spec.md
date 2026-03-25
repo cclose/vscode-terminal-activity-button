@@ -14,6 +14,10 @@ Provide a dead-simple, lightweight button to open/close the VS Code terminal pan
 
 ## Phase 1 — MVP
 
+### Activation
+
+The extension activates on startup (via `onStartupFinished`) so the Status Bar button can appear without requiring the user to click the Activity Bar first.
+
 ### Commands
 
 | Command ID | Behavior |
